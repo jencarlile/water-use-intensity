@@ -15,7 +15,9 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.12.3",
-    "body-parser": "~1.0.1"
+    "body-parser": "~1.0.1",
+    "pg": "4.x",
+    "mongoose": "latest"
   },
 
   "engines": {
