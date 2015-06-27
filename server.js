@@ -1,7 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var pg = require('pg');
+// var pg = require('pg');
 var mongoose = require('mongoose');
+
+var BuildingRecord = require('./models/buildingRecord.js');
 
 // Define our app using express
 var app = express();
@@ -17,12 +19,12 @@ app.use(express.static(__dirname + '/client'));
 var router = express.Router();
 router.use(function(req, res, next) {
     // do logging
-    console.log('Something is happening.');
+    console.log('Handling API request');
     next(); // make sure we go to the next routes and don't stop here
 });
 
 router.get('/', function(req, res) {
-    res.json({message: "hooray! welcome to our api!" });
+    res.json({message: "Welcome to the Water Usage Intensity App!" });
 });
 
 app.use('/api', router);
@@ -30,23 +32,23 @@ app.use('/api', router);
 app.listen(port);
 mongoose.connect('mongodb://aecHack:hackathon@ds053312.mongolab.com:53312/annual-water-use');
 
-var Cat = mongoose.model('Cat', { name: String });
-
-router.route('/cats')
+router.route('/buildingRecord')
     .post(function(req, res) {
-        console.log("req", req.body);
-        var cat = new Cat();
-        cat.name = req.body.name;
-        console.log("name", cat.name);
-
-        cat.save(function(err) {
-            if (err) {
-                res.send(err);
-            }
-            res.json({ message: 'Cat created!' });
+        var bld = new BuildingRecord();
+        bld.description = req.body.description;
+        console.log("Building Name", bld.name);
+        bld.save(function(err) {
+            if (err) { res.send(err); }
+            res.json({ message: 'Building Record added, ' + bld });
         });
-
-    });
+    })
+    .get(function(req, res) {
+        console.log("Query Params: ", req.query);
+        BuildingRecord.find(req.query, function(err, buildings) {
+            if (err) { res.send(err); }
+            res.json(buildings);
+        });
+    })
 
 
 console.log("Magic happens on port " + port);
