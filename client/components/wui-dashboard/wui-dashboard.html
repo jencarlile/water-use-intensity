@@ -1,0 +1,244 @@
+<link rel="import" href="../polymer/polymer.html">
+
+
+<polymer-element name="wui-dashboard">
+
+<template fit>
+    <style>
+        :host{
+            background-color: tomato;
+        }
+        .keen-metric {
+            background: #49c5b1;
+            border-radius: 4px;
+            color: #fff;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            padding: 10px 0;
+            text-align: center;
+        }
+        .keen-metric-value {
+            display: block;
+            font-size: 64px;
+            font-weight: 700;
+            line-height: 84px;
+        }
+        .keen-metric-title {
+            display: block;
+            font-size: 24px;
+            font-weight: 200;
+        }
+        .keen-widget {
+            margin-top: 20px;
+        }
+
+
+        .benchName {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 30px;
+            color: grey;
+        }
+        .benchMetrics {
+            padding: 50px;
+            margin: 50px;
+            border-radius: 10px;
+            background-color: rgb(241, 241, 241);
+            text-align: center;
+        }
+
+    </style>
+    <div layout flex horizontal>
+        <span>Hello!</span>
+<!--         <div flex class="benchMetrics">
+            <span class="benchName">Spaceplan</span>
+            <span id="domContentLoaded"></span>
+            <span id="loaded"></span>
+            <span id="collabClientInit"></span>
+            <span id="stageDomReady"></span>
+            <span id="firstDataReceived"></span>
+        </div>
+
+        <div flex class="benchMetrics">
+            <span class="benchName">Benchmark Longchain</span>
+            <span id="domContentLoaded21"></span>
+            <span id="loaded21"></span>
+            <span id="collabClientInit21"></span>
+            <span id="stageDomReady21"></span>
+            <span id="firstDataReceived21"></span>
+        </div>
+
+        <div flex class="benchMetrics">
+            <span class="benchName">Blank</span>
+            <span id="domContentLoaded26"></span>
+            <span id="loaded26"></span>
+            <span id="collabClientInit26"></span>
+            <span id="stageDomReady26"></span>
+            <span id="firstDataReceived26"></span>
+        </div> -->
+    </div>
+</template>
+
+<script>
+Polymer({
+
+    ready: function(){
+        this.keen = new Keen({
+            projectId: "5548294759949a3f905bce07",
+            readKey: "ceec78259391c271d89776e1683927ca720cb5f9fa48eda4612b46787e994aeae2030199e1580181e3baecfbadce44e6ff53ac2bf58e98b92386b7122e719860c42f1ea6f7b074b0820d7f2d0084779ff9b7d85dbd422efbd1f86eeac918e340f8cc9a0367e8bf2ff38b390d69559c24"
+        });
+    },
+
+    domReady: function(){
+        this.doQuery();
+    },
+
+    queryAndViz: function(config){
+        var query = new Keen.Query("average", {
+            eventCollection: config.event,
+            targetProperty: config.property,
+            filters:[
+                {
+                    "property_name" : config.filterProperty,
+                    "operator" : "eq",
+                    "property_value" : config.filterPropertyValue,
+                },
+            ]
+        });
+        this.keen.run(query, function(err, resp){
+            var rounded = {result: Math.round(resp.result)};
+            var chart = new Keen.Dataviz()
+                .el(config.element)
+                .parseRawData(rounded)
+                .chartType("metric")
+                .colors(["#49c5b1"])
+                .title(config.title)
+                // .width(400)
+                .chartOptions({suffix: 'ms', prettyNumber: false})
+                .render();
+        }.bind(this));
+    },
+
+
+    doQuery: function(){
+        var projects = {
+            p22: {
+                filterProperty: "projectId",
+                filterPropertyValue: 22,
+            },
+            p21: {
+                filterProperty: "projectId",
+                filterPropertyValue: 21
+            },
+            p26: {
+                filterProperty: "projectId",
+                filterPropertyValue: 26
+            }
+        };
+
+        var configs = {
+            domContentLoaded: {
+                event: "dom-content-loaded",
+                property: "duration",
+                // element: this.$.domContentLoaded,
+                title: "DOM Content Loaded",
+            },
+            loaded: {
+                event: "loaded",
+                property: "duration",
+                // element: this.$.loaded,
+                title: "Load Event",
+            },
+            collabClientInit: {
+                event: "collab-client-received",
+                property: "duration",
+                // element: this.$.collabClientInit,
+                title: "Collaboration Client Initialized",
+            },
+            stageDomReady: {
+                event: "stage-dom-ready",
+                property: "duration",
+                // element: this.$.stageDomReady,
+                title: "Flow interactive (proxy)",
+            },
+            firstDataReceived: {
+                event: "first-data-received",
+                property: "duration",
+                // element: this.$.firstDataReceived,
+                title: "First Flow Data Received",
+            },
+        };
+
+        // SPACEPLAN
+        // DOMContentLoaded Event -----------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.domContentLoaded),
+            projects.p22, { element: this.$.domContentLoaded }));
+
+        // Loaded Event ---------------------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.loaded),
+            projects.p22, { element: this.$.loaded }));
+
+        // Collaboration Client Initialized -------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.collabClientInit),
+            projects.p22, { element: this.$.collabClientInit }));
+
+        // Stage DOM Ready ------------------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.stageDomReady),
+            projects.p22, { element: this.$.stageDomReady }));
+
+        // First Data Received --------------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.firstDataReceived),
+            projects.p22, { element: this.$.firstDataReceived }));
+
+
+
+
+
+
+        // BENCHMARK
+        // DOMContentLoaded Event -----------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.domContentLoaded),
+            projects.p21, { element: this.$.domContentLoaded21 }));
+
+        // Loaded Event ---------------------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.loaded),
+            projects.p21, { element: this.$.loaded21 }));
+
+        // Collaboration Client Initialized -------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.collabClientInit),
+            projects.p21, { element: this.$.collabClientInit21 }));
+
+        // Stage DOM Ready ------------------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.stageDomReady),
+            projects.p21, { element: this.$.stageDomReady21 }));
+
+        // First Data Received --------------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.firstDataReceived),
+            projects.p21, { element: this.$.firstDataReceived21 }));
+
+
+        // BLANK
+        // DOMContentLoaded Event -----------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.domContentLoaded),
+            projects.p26, { element: this.$.domContentLoaded26 }));
+
+        // Loaded Event ---------------------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.loaded),
+            projects.p26, { element: this.$.loaded26 }));
+
+        // Collaboration Client Initialized -------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.collabClientInit),
+            projects.p26, { element: this.$.collabClientInit26 }));
+
+        // Stage DOM Ready ------------------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.stageDomReady),
+            projects.p26, { element: this.$.stageDomReady26 }));
+
+        // First Data Received --------------------------------------------------------------------
+        this.queryAndViz(_.assign(_.clone(configs.firstDataReceived),
+            projects.p26, { element: this.$.firstDataReceived26 }));
+
+    }
+
+});
+</script>
+
+</polymer-element>
