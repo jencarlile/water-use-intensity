@@ -63,6 +63,10 @@
         buildingSizes: ["CATEGORY1", "CATEGORY2", "CATEGORY3"],
         buildingCategories: ashraeTypes,
 
+        addBuildingRecord: function(bldRecord) {
+            $.post('/api/buildingRecord', {})
+        },
+
         getBuildingsByType: function(bldType) {
             if (ashraeLabels.indexOf(bldType) === -1) {
                 console.log("Unrecognized building type: ", bldType);
