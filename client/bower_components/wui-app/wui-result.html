@@ -1,15 +1,23 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-localstorage/iron-localstorage.html">
 
-
+<link rel="import" href="wui-records.html">
 
 <dom-module id="wui-result">
+
 <style>
 
 
 </style>
 
 <template>
+    <template if="{{showResult}}">
+        YOUR WUI is <span>{{wui}}</span>
+    </template>
     <span>result!!</span>
+<!--     <iron-localstorage name="wui-building-record" value="{{buildingRecord}}"></iron-localstorage> -->
+    <!-- <wui-records id="recQuery"></wui-records> -->
+
 </template>
 
 <script>
@@ -17,8 +25,26 @@
 Polymer({
     is: "wui-result",
 
-    ready: function(){
+    properties: {
+        record: {
+            type: Object,
+            notify: true,
+            observer: 'recordChanged'
+        },
+        wui: {
+            type: Number,
+        }
+    },
 
+    showResult: false,
+
+    ready: function(){
+        // console.log("RECORD!", this.$.recQuery.buildingRecord);
+    },
+
+    recordChanged: function(newValue, oldValue) {
+        // this.wui = newValue.waterUsageIntensity;
+        console.log("RECORD CHANGED", newValue);
     }
 
 });

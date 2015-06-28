@@ -16,7 +16,8 @@
   "dependencies": {
     "express": "^4.12.3",
     "body-parser": "~1.0.1",
-    "mongoose": "latest"
+    "mongoose": "latest",
+    "lodash": "latest"
   },
 
   "engines": {

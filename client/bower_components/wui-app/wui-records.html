@@ -1,6 +1,6 @@
 <link rel="import" href="../polymer/polymer.html">
 
-
+<link rel="import" href="../iron-localstorage/iron-localstorage.html">
 
 <dom-module id="wui-records">
 <style>
@@ -9,7 +9,7 @@
 </style>
 
 <template>
-    <!-- <span>home!!</span> -->
+    <!-- <iron-localstorage name="wui-building-record" value="{{buildingRecord}}"></iron-localstorage>  -->
 </template>
 
 <script>
@@ -51,10 +51,19 @@
     };
 
     var ashraeLabels = Object.keys(ashraeTypes);
-    console.log("ASHRAE", ashraeLabels);
+
+    var latestRecord = {};
 
     Polymer({
         is: "wui-records",
+
+        properties: {
+            buildingRecord: {
+                type: Object,
+                value: latestRecord,
+                notify: true
+            }
+        },
 
         ready: function(){
 
@@ -64,7 +73,7 @@
         buildingCategories: ashraeTypes,
 
         addBuildingRecord: function(bldRecord) {
-            $.post('/api/buildingRecord', {})
+            return $.post('/api/buildingRecord', bldRecord);
         },
 
         getBuildingsByType: function(bldType) {

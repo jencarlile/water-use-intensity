@@ -4,6 +4,7 @@ var Schema       = mongoose.Schema;
 var BuildingRecordSchema   = new Schema({
     streetAddress: String,
     city: String,
+    state: String,
     zipCode: String,
     description: String,
     buildingType: String,

@@ -9,6 +9,8 @@
 
 
 <link rel="import" href="wui-records.html">
+<link rel="import" href="wui-result.html">
+
 
 
 <dom-module id="wui-info">
@@ -50,51 +52,61 @@
         margin-top: 40px;
     }
 
+    #leftSide, #resultSection {
+        width: 45%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
 </style>
 
 <template>
-    <wui-records id="recQuery"></wui-records>
+    <wui-records id="recQuery" buildingRecord="{{record}}"></wui-records>
 
-    <form>
-        <paper-input-container always-float-label>
-            <label>Street Address</label>
-            <input is="iron-input" bind-value="{{_streetAddress}}">
-        </paper-input-container>
-        <paper-input-container always-float-label>
-            <label>City</label>
-            <input is="iron-input" bind-value="{{_city}}">
-        </paper-input-container>
-        <paper-input-container always-float-label>
-            <label>State</label>
-            <input is="iron-input" bind-value="{{_state}}">
-        </paper-input-container>
+    <div id="leftSide">
+        <form>
+            <paper-input-container always-float-label>
+                <label>Street Address</label>
+                <input is="iron-input" bind-value="{{_streetAddress}}">
+            </paper-input-container>
+            <paper-input-container always-float-label>
+                <label>City</label>
+                <input is="iron-input" bind-value="{{_city}}">
+            </paper-input-container>
+            <paper-input-container always-float-label>
+                <label>State</label>
+                <input is="iron-input" bind-value="{{_state}}">
+            </paper-input-container>
 
-        <label id="bldTypeLabel">Building Type</label>
-        <select id="bldTypeSelect">
-            <template is="dom-repeat" items="{{buildingTypes}}">
-                <option value="{{item}}">{{item}}</option>
-            </template>
-        </select>
+            <label id="bldTypeLabel">Building Type</label>
+            <select id="bldTypeSelect">
+                <template is="dom-repeat" items="{{buildingTypes}}">
+                    <option value="{{item}}">{{item}}</option>
+                </template>
+            </select>
 
-        <paper-input-container always-float-label>
-            <label>Gross Square Feet</label>
-            <input type="number" is="iron-input" bind-value="{{_sqft}}">
-        </paper-input-container>
-        <paper-input-container always-float-label>
-            <label>Total Yearly Water Use</label>
-            <input type="number" is="iron-input" bind-value="{{_totalWaterUsage}}">
-        </paper-input-container>
-        <paper-input-container always-float-label>
-            <label>Consumption Year</label>
-            <input type="number" is="iron-input" bind-value="{{_consumptionYear}}">
-        </paper-input-container>
-        <paper-input-container always-float-label="true">
-            <label>Building Description (optional)</label>
-            <input is="iron-input" bind-value="{{_bldDescription}}">
-        </paper-input-container>
+            <paper-input-container always-float-label>
+                <label>Gross Square Feet</label>
+                <input type="number" is="iron-input" bind-value="{{_sqft}}">
+            </paper-input-container>
+            <paper-input-container always-float-label>
+                <label>Total Yearly Water Use</label>
+                <input type="number" is="iron-input" bind-value="{{_totalWaterUsage}}">
+            </paper-input-container>
+            <paper-input-container always-float-label>
+                <label>Consumption Year</label>
+                <input type="number" is="iron-input" bind-value="{{_consumptionYear}}">
+            </paper-input-container>
+            <paper-input-container always-float-label="true">
+                <label>Building Description (optional)</label>
+                <input is="iron-input" bind-value="{{_bldDescription}}">
+            </paper-input-container>
 
-        <paper-button raised id="submit">What's my WUI?</paper-button>
-    </form>
+            <paper-button raised id="submit">What's my WUI?</paper-button>
+        </form>
+    </div>
+
+    <wui-result id="resultSection" record="[[record]]"></wui-result>
 </template>
 
 <script>
@@ -109,6 +121,12 @@
                 return _.values(this.$.recQuery.buildingCategories)
             }
         },
+        record: {
+            // type: Object,
+            notify: true,
+            observer: 'recordChanged'
+        },
+
         _bldType: { type: String },
         _totalWaterUsage: { type: Number },
         _sqft: { type: Number },
@@ -137,6 +155,7 @@
         var params = {
             streetAddress: this._streetAddress,
             city: this._city,
+            state: this._state,
             description: this._bldDescription,
             reportYear: this._consumptionYear,
             waterUsageIntensity: wui,
@@ -144,7 +163,16 @@
             totalWaterUsage: this._totalWaterUsage
         };
 
-        console.log("SUBMIT", params);
+        var res = this.$.recQuery.addBuildingRecord(params);
+        res.then(function(data, status, headers, config){
+            this.record = params;
+            console.log("SUCCESS INFO" );
+        }.bind(this)).fail(function(data, status, headers, config){
+            console.log("ERROR!!");
+        });
+    },
+    recordChanged: function(newVal, old) {
+        console.log("RECORD CHANGED!", newVal, old);
     }
 
 });

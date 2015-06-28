@@ -1,7 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-// var pg = require('pg');
 var mongoose = require('mongoose');
+var _ = require('lodash');
 
 var BuildingRecord = require('./models/buildingRecord.js');
 
@@ -35,8 +35,8 @@ mongoose.connect('mongodb://aecHack:hackathon@ds053312.mongolab.com:53312/annual
 router.route('/buildingRecord')
     .post(function(req, res) {
         var bld = new BuildingRecord();
-        bld.description = req.body.description;
-        console.log("Building Name", bld.name);
+        console.log("Add Building", req.body);
+        bld = _.assign(bld, req.body);
         bld.save(function(err) {
             if (err) { res.send(err); }
             res.json({ message: 'Building Record added, ' + bld });
