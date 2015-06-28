@@ -37,6 +37,12 @@
     .body section {
         margin-left: 20px;
     }
+    #logo {
+        float: left;
+        padding-left: 10px;
+        width: 40px;
+        height: 40px;
+    }
 
 </style>
 
@@ -46,6 +52,7 @@
     <more-route name="info" path="/info"></more-route>
 
     <div class="nav">
+        <img id="logo" src="./img/masked_logo.svg">
         <more-route-selector>
             <paper-menu>
                 <paper-item label="Home" route="home" class="navmenu">Home</paper-item>
