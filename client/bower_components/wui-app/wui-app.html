@@ -1,0 +1,88 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<link rel="import" href="../paper-menu/paper-menu.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../iron-pages/iron-pages.html">
+<link rel="import" href="../more-routing/more-routing.html">
+
+<link rel="import" href="wui-home.html">
+<link rel="import" href="wui-info.html">
+<link rel="import" href="wui-result.html">
+<link rel="import" href="wui-explore.html">
+
+<dom-module id="wui-app">
+<style>
+    :host{
+        font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+    .nav {
+        text-align: right;
+    }
+    .nav paper-menu {
+        background-color: #3D59AB;
+    }
+    .nav paper-item {
+        display: inline-block;
+        color: #B0C4DE;
+    }
+    .navmenu {
+        text-transform: uppercase;
+    }
+    .body {
+        background-color: #27408B;
+        color: #B0C4DE;
+        height: 100%;
+    }
+
+</style>
+
+<template>
+    <more-routing-config driver="hash"></more-routing-config>
+    <more-route name="home" path="/"></more-route>
+    <more-route name="info" path="/info"></more-route>
+    <more-route name="result" path="/result"></more-route>
+    <more-route name="explore" path="/explore"></more-route>
+
+    <div class="nav">
+        <more-route-selector>
+            <paper-menu>
+                <paper-item label="Home" route="home" class="navmenu">Home</paper-item>
+                <paper-item label="One" route="info" class="navmenu">My WUI</paper-item>
+                <paper-item label="Two" route="explore"class="navmenu">Compare WUI</paper-item>
+            </paper-menu>
+        </more-route-selector>
+    </div>
+
+    <div class="body">
+        <more-route-selector>
+            <iron-pages>
+                <section route="home">
+                    <wui-home></wui-home>
+                </section>
+                <section route="info">
+                    <wui-info></wui-info>
+                </section>
+                <section route="result">
+                    <wui-result></wui-result>
+                </section>
+                <section route="explore">
+                    <wui-explore></wui-explore>
+                </section>
+            </iron-pages>
+        </more-route-selector>
+    </div>
+
+</template>
+
+<script>
+Polymer({
+    is: "wui-app",
+
+    ready: function(){
+
+    }
+
+});
+</script>
+
+</dom-module>

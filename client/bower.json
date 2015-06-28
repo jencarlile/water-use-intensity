@@ -16,6 +16,7 @@
   "dependencies": {
     "polymer": "Polymer/polymer#^1.0.0",
     "iron-elements": "PolymerElements/iron-elements#^1.0",
-    "paper-elements": "PolymerElements/paper-elements#^1.0"
+    "paper-elements": "PolymerElements/paper-elements#^1.0",
+    "more-routing": "Polymore/more-routing#^1.0"
   }
 }
