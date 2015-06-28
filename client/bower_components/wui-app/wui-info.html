@@ -26,10 +26,11 @@
     paper-input, paper-input-container {
         width: 220px;
         color: whitesmoke;
+        margin-botton: -5px;
     }
 
     paper-input {
-        font: 12px RobotoDraft;
+        font: 10px RobotoDraft;
         font-weight: lighter;
     }
 
@@ -46,12 +47,12 @@
 
     #bldTypeLabel {
         color: whitesmoke;
-        font-size: 12px;
+        font-size: 16px RobotoDraft;
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         display: block;
         margin-top: 16px;
-        margin-bottom: 10px;
+        margin-bottom: 4px;
         color: ##FFFFFF;
         text-transform: none;
         font-weight: bolder;
@@ -71,9 +72,26 @@
         margin-bottom: -5px;
     }
 
+    h3 {
+        margin-botton: -5px;
+    }
+
     div {
         margin-bottom: -5px;
+        padding-top: 4px;
     }
+
+    div.icon {
+        position: absolute;
+        left: 5px;
+        width: 50px;
+    }
+
+    div.content {
+        margin-left: 20px;
+    }
+
+
 
 </style>
 
@@ -81,44 +99,73 @@
     <wui-records id="recQuery" buildingRecord="{{record}}"></wui-records>
 
     <div id="leftSide">
-        <p> Tell us where to find your building.</p>
         <form>
-            <paper-input-container float-label>
-                <label>Enter your address</label>
-                <input is="iron-input" bind-value="{{_streetAddress}}">
-            </paper-input-container>
-            <paper-input-container float-label>
-                <label>Enter your City</label>
-                <input is="iron-input" bind-value="{{_city}}">
-            </paper-input-container>
-            <paper-input-container float-label>
-                <label>Enter your State</label>
-                <input is="iron-input" bind-value="{{_state}}">
-            </paper-input-container>
+            <div class="section">
+                <div class="icon">
+                    <img src="./img/map.svg" alt="Map" style="float:left;width:42px;height:42px;"/>
+                </div>
+                <div class="content">
 
-            <label id="bldTypeLabel">Building Type</label>
-            <select id="bldTypeSelect">
-                <template is="dom-repeat" items="{{buildingTypes}}">
-                    <option value="{{item}}">{{item}}</option>
-                </template>
-            </select>
+                    <p>Tell us where to find your building.</p>
 
-            <paper-input-container float-label>
-                <label>Gross Square Feet</label>
-                <input type="number" is="iron-input" bind-value="{{_sqft}}">
-            </paper-input-container>
-            <paper-input-container float-label>
-                <label>Total Yearly Water Use</label>
-                <input type="number" is="iron-input" bind-value="{{_totalWaterUsage}}">
-            </paper-input-container>
-            <paper-input-container float-label>
-                <label>Reporting Year</label>
-                <input type="number" is="iron-input" bind-value="{{_consumptionYear}}">
-            </paper-input-container>
-            <paper-input-container float-label="true">
-                <label>Building Description (optional)</label>
-                <input is="iron-input" bind-value="{{_bldDescription}}">
-            </paper-input-container>
+                    <paper-input-container float-label>
+                        <label>Enter your address</label>
+                        <input is="iron-input" bind-value="{{_streetAddress}}">
+                    </paper-input-container>
+                    <paper-input-container float-label>
+                        <label>Enter your City</label>
+                        <input is="iron-input" bind-value="{{_city}}">
+                    </paper-input-container>
+                    <paper-input-container float-label>
+                        <label>Enter your State</label>
+                        <input is="iron-input" bind-value="{{_state}}">
+                    </paper-input-container>
+                </div>
+            </div>
+            <div class="section">
+                <div class="icon">
+                    <img src="./img/building.svg" alt="Building" style="float:left;width:42px;height:42px;" />
+                </div>
+                <div class="content">
+                    <p> Choose the building type which fits best.</p>
+                    <h3>If you have a mixed use building, select the type which matches your majority usage.</h3>
+
+                    <label id="bldTypeLabel">Building Type</label>
+                    <select id="bldTypeSelect">
+                        <template is="dom-repeat" items="{{buildingTypes}}">
+                            <option value="{{item}}">{{item}}</option>
+                        </template>
+                    </select>
+
+                    <paper-input-container float-label>
+                        <label>Gross Square Feet</label>
+                        <input type="number" is="iron-input" bind-value="{{_sqft}}">
+                    </paper-input-container>
+                 </div>
+            </div>
+
+            <div class="section">
+                <div class="icon">
+                    <img src="./img/water_usage.svg" alt="Water Useage" style="float:left;width:42px;height:42px;" />
+                </div>
+                <div class="content">
+                    <p>Input your building's annual water use.</p>
+                    <h3>You can find this in your water bills.</h3>
+
+                    <paper-input-container float-label>
+                        <label>Total Annual Water Use (G)</label>
+                        <input type="number" is="iron-input" bind-value="{{_totalWaterUsage}}">
+                    </paper-input-container>
+                    <paper-input-container float-label>
+                        <label>Reporting Year</label>
+                        <input type="number" is="iron-input" bind-value="{{_consumptionYear}}">
+                    </paper-input-container>
+                    <paper-input-container float-label="true">
+                        <label>Building Description (optional)</label>
+                        <input is="iron-input" bind-value="{{_bldDescription}}">
+                    </paper-input-container>
+                </div>
+            </div>
 
             <paper-button raised id="submit">What's my WUI?</paper-button>
         </form>

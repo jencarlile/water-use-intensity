@@ -22,10 +22,8 @@ h2 {
 }
 
 h3 {
-  font-size: 20px;
-  font-weight: bolder;
-  margin-top: 2em;
-  margin-bottom: 1em;
+  font-size: 11px;
+  font-weight: lighter;
 }
 
 
@@ -37,6 +35,11 @@ p, li {
 
 div {
     padding-top: 20px;
+}
+
+p + h3,
+h3 + p {
+  margin-top: 10px10
 }
 
 /* Styles for Paper elements. */
@@ -51,15 +54,21 @@ paper-button {
 paper-button.colored {
   background: #FFFFFF;
   color: #28577F;
+  text-transform: none;
+  font-weight: bolder;
 }
 
 paper-button[raised].colored {
   background: #FFFFFF;
   color: #28577F;
+  text-transform: none;
+  font-weight: bolder;
 }
 
 paper-button[disabled].colored {
   background: #eaeaea;
   color: #a8a8a8;
+  text-transform: none;
+  font-weight: bolder;
 }
 
