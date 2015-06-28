@@ -31,7 +31,9 @@ h3 {
 
 p, li {
   font-size: 18px;
+  max-width: 75%;
   width: 590px
+
 }
 
 
