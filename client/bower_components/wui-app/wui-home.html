@@ -9,15 +9,52 @@
   }
 
 </style>
+    :host {
+        --paper-input-container-color: whitesmoke;
+        --paper-input-container-focus-color: #4FAEFF;
+        --paper-input-container-input-color: whitesmoke;
+    }
+
+    paper-input, paper-input-container {
+        width: 220px;
+        color: whitesmoke;
+    }
+    paper-button {
+        color: #28577F;
+        background: whitesmoke;
+    }
+
+    select {
+        font-size: 20px;
+        width: 220px;
+        margin-bottom: 20px;
+    }
+
+    #bldTypeLabel {
+        color: whitesmoke;
+        font-size: 12px;
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        display: block;
+        margin-bottom: 10px;
+
+    }
 
 <template>
   <div>
      <br>
      <h1>Water Use Intensity (WUI)</h1>
 
-       <p>Cras mattis consectetur purus sit amet fermentum. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum.</p>
+        <p>WUI is similar to EUI, energy use intensity, which is widely used in benchmarking 
+        building energy usage.  As our attention turns more and more to water usage and data 
+        collection increases, WUI will become a powerful tool in building design.</p>
 
-      <paper-button raised>Button</paper-button>
+        <p>This metric allows you to compare like to like, and to see how your buildings stack up 
+        against other buildings of your saize, use, or region.</p>
+
+
+
+      <paper-button raised="">Get Started</paper-button>
 
 </div>
 </template>
