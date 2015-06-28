@@ -1,0 +1,60 @@
+/* Content styles. */
+
+:host {
+  font: 14px RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
+  font-weight: lighter;
+  color: #FFFFFF;
+  margin-left: 100px;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: lighter;
+  color: #FFFFFF;
+  line-height: 63px;
+}
+
+h2 {
+  font-size: 24px;
+  font-weight: lighter;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+h3 {
+  font-size: 24px;
+  font-weight: bolder;
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+
+p, li {
+  font-size: 18px;
+  width: 590px
+}
+
+
+/* Styles for Paper elements. */
+
+paper-button {
+  background: #FFFFFF;
+  color: #28577F;
+  text-transform: none;
+}
+
+paper-button.colored {
+  background: #FFFFFF;
+  color: #28577F;
+}
+
+paper-button[raised].colored {
+  background: #FFFFFF;
+  color: #28577F;
+}
+
+paper-button[disabled].colored {
+  background: #eaeaea;
+  color: #a8a8a8;
+}
+
