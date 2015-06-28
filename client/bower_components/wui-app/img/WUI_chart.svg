@@ -7,7 +7,7 @@
         <circle id="path-1" cx="137.684332" cy="137.684332" r="137.684332"></circle>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
-        <g id="Calculate-yours-empty" sketch:type="MSArtboardGroup" transform="translate(-92.000000, -459.000000)">
+        <g id="Location" sketch:type="MSArtboardGroup" transform="translate(-92.000000, -459.000000)">
             <g id="WUI_chart" sketch:type="MSLayerGroup" transform="translate(103.000000, 469.000000)">
                 <g id="Group-Copy">
                     <g id="Group" transform="translate(0.000000, 0.755760)">
@@ -18,12 +18,6 @@
                             <use id="Mask" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
                             <path d="M-113.124424,178.611697 C-72.7975907,173.570843 -27.53832,170.429422 5.95391705,183.077135 C39.4461541,195.724848 46.1414035,211.734723 99.7281106,208.381282 C142.016171,205.734908 166.753496,171.881805 205.410138,168.192342 C271.646012,161.870666 319.271278,206.683144 327.465438,209.869762 C337.187329,213.650497 346.319508,218.800637 355.746544,223.266075 L189.778199,339.370365 L-45.4015247,286.529351 L-113.124424,178.611697 Z" id="Path-6" fill="#4990E2" sketch:type="MSShapeGroup" mask="url(#mask-2)"></path>
                         </g>
-                        <text id="7.94" sketch:type="MSTextLayer" font-family="Roboto" font-size="72" font-weight="420" sketch:alignment="middle" fill="#FFFFFF">
-                            <tspan x="60.2929147" y="176.389277">7.94</tspan>
-                        </text>
-                        <text id="WUI" sketch:type="MSTextLayer" font-family="Roboto" font-size="26" font-weight="260" sketch:alignment="middle" fill="#FFFFFF">
-                            <tspan x="216.509518" y="143.890393">WUI</tspan>
-                        </text>
                         <circle id="Oval-2" stroke="#4990BE" stroke-width="21" sketch:type="MSShapeGroup" cx="161.5" cy="161.672687" r="161.5"></circle>
                     </g>
                 </g>
