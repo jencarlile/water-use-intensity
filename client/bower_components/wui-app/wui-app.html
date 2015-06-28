@@ -7,10 +7,10 @@
 
 <link rel="import" href="wui-home.html">
 <link rel="import" href="wui-info.html">
-<!-- <link rel="import" href="wui-result.html">
- --><link rel="import" href="wui-explore.html">
+<link rel="import" href="wui-explore.html">
 
 <dom-module id="wui-app"  is="auto-binding">
+
 <style>
     :host{
         font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -38,27 +38,18 @@
         margin-left: 20px;
     }
 
-/*    .body wui-info, .nav wui-result {
-        width: 50%;
-        display: inline-block;
-        vertical-align: top;
-    }*/
-
 </style>
 
 <template>
     <more-routing-config driver="hash"></more-routing-config>
     <more-route name="home" path="/"></more-route>
     <more-route name="info" path="/info"></more-route>
-    <!-- <more-route name="result" path="/result"></more-route> -->
-    <more-route name="explore" path="/explore"></more-route>
 
     <div class="nav">
         <more-route-selector>
             <paper-menu>
                 <paper-item label="Home" route="home" class="navmenu">Home</paper-item>
                 <paper-item label="One" route="info" class="navmenu">My WUI</paper-item>
-                <paper-item label="Two" route="explore"class="navmenu">Compare WUI</paper-item>
             </paper-menu>
         </more-route-selector>
     </div>
@@ -72,12 +63,7 @@
                 <section route="info">
                     <wui-info></wui-info>
                 </section>
-<!--                 <section route="result">
-                    <wui-result></wui-result>
-                </section> -->
-                <section route="explore">
-                    <wui-explore></wui-explore>
-                </section>
+
             </iron-pages>
         </more-route-selector>
     </div>

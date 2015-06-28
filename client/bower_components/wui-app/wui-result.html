@@ -1,10 +1,46 @@
 <link rel="import" href="../polymer/polymer.html">
 
+<link rel="import" href="../google-charts/google-chart.html">
+
 <link rel="import" href="wui-records.html">
+
+<link rel="import" type="css" href="../google-charts/google-chart.css">
 
 <dom-module id="wui-result">
 
 <style>
+    #wui {
+        width: 100%;
+        text-align: center;
+        margin-top: 50px;
+        font-size: 40px:
+    }
+/*    #comparisonChart {
+        height: 400px;
+        width: 400px;
+        margin: 0 auto;
+        border: 1px dotted tomato;
+    }
+
+    google-chart {
+        height: 300px;
+        width: 50em;
+        background-color: white;
+    }
+    #chart {
+        border: 1px dotted tomato;
+    }*/
+    #wui-badge {
+        font-size: 100px;
+        line-height: 200px;
+        height: 200px;
+        width: 200px;
+        border-radius:100px;
+        background-color: #4FAEFF;
+        margin: 0 auto;
+        margin-top: 50px;
+    }
+
 
 
 </style>
@@ -12,12 +48,31 @@
 <template>
     <template is="dom-if" if="{{showResult}}">
         <div id="wui">
-            Your WUI is <span>{{wui}}</span>
+            Your WUI is <div id="wui-badge">{{wui}}</div>
         </div>
         <div id="comparisonChart">
-
         </div>
     </template>
+    <div id="chart">
+<!--         <google-chart id="gchart"
+            type='pie'
+            options='{"title": "Distribution of days in 2001Q1"}'
+            data='[["Month", "Days"], ["Jan", 31], ["Feb", 28], ["Mar", 31]]'>
+        </google-chart> -->
+<!--   <google-chart
+    type='column'
+    options='{"title": "Inventory"}'
+    data='[["Year", "Things", "Stuff"],
+           ["2004", 1000, 400],
+           ["2005", 1170, 460],
+           ["2006", 660, 1120],
+           ["2007", 1030, 540]]'>
+  </google-chart> -->
+<!--           <google-chart
+            cols='[{"label": "Data", "type": "string"},{"label": "Value", "type": "number"}]'
+            rows='[["Something", 1]]'>
+        </google-chart> -->
+    </div>
 
 </template>
 
@@ -40,10 +95,11 @@ Polymer({
     showResult: false,
 
     ready: function(){
+        // this.$.gchart.drawChart();
     },
 
     recordChanged: function(newValue, oldValue) {
-        this.wui = newValue.waterUsageIntensity;
+        this.wui = newValue.waterUsageIntensity.toFixed(1);
         this.showResult = true;
     }
 

@@ -4,7 +4,7 @@
   font: 14px RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
   font-weight: lighter;
   color: #FFFFFF;
-  margin-left: 100px;
+  margin-left: 20px;
 }
 
 h1 {
@@ -33,9 +33,11 @@ p, li {
   font-size: 18px;
   max-width: 75%;
   width: 590px
-
 }
 
+div {
+    padding-top: 20px;
+}
 
 /* Styles for Paper elements. */
 
