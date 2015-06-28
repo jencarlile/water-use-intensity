@@ -40,57 +40,59 @@
         text-rendering: optimizeLegibility;
         -webkit-font-smoothing: antialiased;
         display: block;
+        margin-top: 16px;
         margin-bottom: 10px;
-
     }
 
+    #submit {
+        margin-top: 40px;
+    }
 
 </style>
 
 <template>
     <wui-records id="recQuery"></wui-records>
-<!--     <button id="fetch">Fetch!</button>
-      <span>info!!</span> -->
 
-    <div id="buildingInfo">
+    <form>
+        <paper-input-container always-float-label>
+            <label>Street Address</label>
+            <input is="iron-input" bind-value="{{_streetAddress}}">
+        </paper-input-container>
+        <paper-input-container always-float-label>
+            <label>City</label>
+            <input is="iron-input" bind-value="{{_city}}">
+        </paper-input-container>
+        <paper-input-container always-float-label>
+            <label>State</label>
+            <input is="iron-input" bind-value="{{_state}}">
+        </paper-input-container>
+
         <label id="bldTypeLabel">Building Type</label>
-        <select>
+        <select id="bldTypeSelect">
             <template is="dom-repeat" items="{{buildingTypes}}">
                 <option value="{{item}}">{{item}}</option>
             </template>
         </select>
 
         <paper-input-container always-float-label>
-            <label>Street Address</label>
-            <input is="iron-input">
-        </paper-input-container>
-        <paper-input-container always-float-label>
-            <label>City</label>
-            <input is="iron-input">
-        </paper-input-container>
-        <paper-input-container always-float-label>
-            <label>State</label>
-            <input is="iron-input">
-        </paper-input-container>
-        <paper-input-container always-float-label>
             <label>Gross Square Feet</label>
-            <input type="number" is="iron-input">
+            <input type="number" is="iron-input" bind-value="{{_sqft}}">
         </paper-input-container>
         <paper-input-container always-float-label>
             <label>Total Yearly Water Use</label>
-            <input type="number" is="iron-input">
+            <input type="number" is="iron-input" bind-value="{{_totalWaterUsage}}">
         </paper-input-container>
         <paper-input-container always-float-label>
             <label>Consumption Year</label>
-            <input type="number" is="iron-input">
+            <input type="number" is="iron-input" bind-value="{{_consumptionYear}}">
         </paper-input-container>
         <paper-input-container always-float-label="true">
             <label>Building Description (optional)</label>
-            <input is="iron-input" >
+            <input is="iron-input" bind-value="{{_bldDescription}}">
         </paper-input-container>
 
         <paper-button raised id="submit">What's my WUI?</paper-button>
-    </div>
+    </form>
 </template>
 
 <script>
@@ -104,25 +106,43 @@
             value: function() {
                 return _.values(this.$.recQuery.buildingCategories)
             }
-        }
+        },
+        _bldType: { type: String },
+        _totalWaterUsage: { type: Number },
+        _sqft: { type: Number },
+        _streetAddress: { type: String },
+        _city: { type: String },
+        _state: { type: String },
+        _consumptionYear: { type: Number },
+        _bldDescription: { type: String }
     },
 
+
     listeners: {
-        'fetch.tap': 'fooFunc',
         'submit.tap': 'submit'
     },
 
-
-    ready: function(){
-        // this.buildingTypes = Object.keys(this.$.recQuery.buildingCategories);
-    },
-
-    fooFunc: function() {
-        this.$.recQuery.getBuildingsByType("School/University");
-    },
+    ready: function(){ },
 
     submit: function() {
-        console.log("SUBMIT");
+        this._sqft = parseInt(this._sqft);
+        this._totalWaterUsage = parseInt(this._totalWaterUsage);
+        this._consumptionYear = parseInt(this._consumptionYear);
+
+        var wui = this._totalWaterUsage / this._sqft;
+
+        // Note, not setting zip code, year build, or report type
+        var params = {
+            streetAddress: this._streetAddress,
+            city: this._city,
+            description: this._bldDescription,
+            reportYear: this._consumptionYear,
+            waterUsageIntensity: wui,
+            sqFt: this._sqft,
+            totalWaterUsage: this._totalWaterUsage
+        };
+
+        console.log("SUBMIT", params);
     }
 
 });
