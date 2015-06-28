@@ -199,14 +199,14 @@
             observer: 'recordChanged'
         },
 
-        _bldType: { type: String },
-        _totalWaterUsage: { type: Number },
-        _sqft: { type: Number },
-        _streetAddress: { type: String },
-        _city: { type: String },
-        _state: { type: String },
-        _consumptionYear: { type: Number },
-        _bldDescription: { type: String }
+        _bldType: { type: String, value: "" },
+        _totalWaterUsage: { type: Number, value: 0 },
+        _sqft: { type: Number, value: 0 },
+        _streetAddress: { type: String, value: "" },
+        _city: { type: String, value: "" },
+        _state: { type: String, value: "" },
+        _consumptionYear: { type: Number, value: 0 },
+        _bldDescription: { type: String, value: "" }
     },
 
 
@@ -225,14 +225,14 @@
 
         // Note, not setting zip code, year build, or report type
         var params = {
-            streetAddress: this._streetAddress,
-            city: this._city,
-            state: this._state,
-            description: this._bldDescription,
-            reportYear: this._consumptionYear,
-            waterUsageIntensity: wui,
-            sqFt: this._sqft,
-            totalWaterUsage: this._totalWaterUsage
+            streetAddress: this._streetAddress || "",
+            city: this._city || "",
+            state: this._state || "",
+            description: this._bldDescription || "",
+            reportYear: this._consumptionYear || 0,
+            waterUsageIntensity: wui || 0,
+            sqFt: this._sqft || 0,
+            totalWaterUsage: this._totalWaterUsage || 0
         };
 
         var res = this.$.recQuery.addBuildingRecord(params);
