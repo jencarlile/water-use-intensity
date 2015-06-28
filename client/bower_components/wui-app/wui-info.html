@@ -27,6 +27,12 @@
         width: 220px;
         color: whitesmoke;
     }
+
+    paper-input {
+        font: 12px RobotoDraft;
+        font-weight: lighter;
+    }
+
     paper-button {
         color: #28577F;
         background: whitesmoke;
@@ -46,6 +52,9 @@
         display: block;
         margin-top: 16px;
         margin-bottom: 10px;
+        color: ##FFFFFF;
+        text-transform: none;
+        font-weight: bolder;
     }
 
     #submit {
@@ -58,23 +67,32 @@
         vertical-align: top;
     }
 
+    p {
+        margin-bottom: -5px;
+    }
+
+    div {
+        margin-bottom: -5px;
+    }
+
 </style>
 
 <template>
     <wui-records id="recQuery" buildingRecord="{{record}}"></wui-records>
 
     <div id="leftSide">
+        <p> Tell us where to find your building.</p>
         <form>
-            <paper-input-container always-float-label>
-                <label>Street Address</label>
+            <paper-input-container float-label>
+                <label>Enter your address</label>
                 <input is="iron-input" bind-value="{{_streetAddress}}">
             </paper-input-container>
-            <paper-input-container always-float-label>
-                <label>City</label>
+            <paper-input-container float-label>
+                <label>Enter your City</label>
                 <input is="iron-input" bind-value="{{_city}}">
             </paper-input-container>
-            <paper-input-container always-float-label>
-                <label>State</label>
+            <paper-input-container float-label>
+                <label>Enter your State</label>
                 <input is="iron-input" bind-value="{{_state}}">
             </paper-input-container>
 
@@ -85,19 +103,19 @@
                 </template>
             </select>
 
-            <paper-input-container always-float-label>
+            <paper-input-container float-label>
                 <label>Gross Square Feet</label>
                 <input type="number" is="iron-input" bind-value="{{_sqft}}">
             </paper-input-container>
-            <paper-input-container always-float-label>
+            <paper-input-container float-label>
                 <label>Total Yearly Water Use</label>
                 <input type="number" is="iron-input" bind-value="{{_totalWaterUsage}}">
             </paper-input-container>
-            <paper-input-container always-float-label>
-                <label>Consumption Year</label>
+            <paper-input-container float-label>
+                <label>Reporting Year</label>
                 <input type="number" is="iron-input" bind-value="{{_consumptionYear}}">
             </paper-input-container>
-            <paper-input-container always-float-label="true">
+            <paper-input-container float-label="true">
                 <label>Building Description (optional)</label>
                 <input is="iron-input" bind-value="{{_bldDescription}}">
             </paper-input-container>
