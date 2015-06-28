@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="97px" height="98px" viewBox="0 0 97 98" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>Water usage</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <circle id="path-1" cx="39.647523" cy="39.647523" r="38.647523"></circle>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Location-Copy" sketch:type="MSArtboardGroup" transform="translate(-29.000000, -793.000000)">
+            <g id="Water-usage" sketch:type="MSLayerGroup" transform="translate(32.335000, 796.667500)">
+                <circle id="Oval-2" stroke="#FFFFFF" stroke-width="6" sketch:type="MSShapeGroup" cx="45.3325" cy="45.3325" r="45.3325"></circle>
+                <g id="Path-6-Copy" transform="translate(5.684977, 5.596335)">
+                    <mask id="mask-2" sketch:name="Mask" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" sketch:type="MSShapeGroup" xlink:href="#path-1"></use>
+                    <path d="M-30.7536406,56.98505 C-19.4340358,55.5700994 -6.72991263,54.6883132 2.67124424,58.2384831 C12.0724011,61.7886531 13.9517348,66.2825704 28.993341,65.3412712 C40.8634556,64.5984429 47.8071384,55.0959921 58.6579263,54.0603725 C77.2501104,52.2858996 90.6183603,64.8646094 92.9184332,65.7590822 C95.6473349,66.8203218 98.2107066,68.2659486 100.856843,69.5193818 L54.2700941,102.10946 L-11.7440534,87.2771678 L-30.7536406,56.98505 Z" id="Path-6" fill="#FFFFFF" sketch:type="MSShapeGroup" mask="url(#mask-2)"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
