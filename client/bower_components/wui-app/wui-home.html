@@ -12,7 +12,7 @@
       left: 50%;
       @include translateX(-50%);
       max-height: 100%;
- 
+
     @media (min-width: 800px) {
       left: 0; // set the left back to 0
       max-height: none; // remove the max-height
@@ -46,7 +46,7 @@
 
 
 
-      <paper-button raised>Get Started</paper-button>
+      <paper-button id="getstarted" raised>Get Started</paper-button>
 
 </div>
 </template>
@@ -56,8 +56,16 @@
 Polymer({
     is: "wui-home",
 
+    listeners: {
+        'getstarted.tap': 'goToWUI'
+    },
+
     ready: function(){
 
+    },
+
+    goToWUI: function() {
+        window.location.hash = "!/info";
     }
 
 });
