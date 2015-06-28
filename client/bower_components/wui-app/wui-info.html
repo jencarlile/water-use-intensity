@@ -15,7 +15,7 @@
 
 <dom-module id="wui-info">
   <link rel="import" type="css" href="wui-style.css">
-  
+
 <style>
     :host {
         --paper-input-container-color: whitesmoke;
@@ -62,9 +62,16 @@
     }
 
     #leftSide, #resultSection {
-        width: 45%;
+        /*width: 45%;*/
         display: inline-block;
         vertical-align: top;
+    }
+
+    #leftSide {
+        width:30%;
+    }
+    #resultSection {
+        width: 65%;
     }
 
     p {
