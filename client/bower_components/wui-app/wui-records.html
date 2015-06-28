@@ -1,0 +1,97 @@
+<link rel="import" href="../polymer/polymer.html">
+
+
+
+<dom-module id="wui-records">
+<style>
+
+
+</style>
+
+<template>
+    <!-- <span>home!!</span> -->
+</template>
+
+<script>
+(function() {
+
+    var ashraeTypes = {
+        AUTO_FACILITY: "Automotive Facility",
+        CONVENTION_CTR: "Convention Center",
+        COURTHOUSE: "Courthouse",
+        DINING_BAR: "Dining: bar lounge/leisure",
+        DINING_FASTFOOD: "Dining: cafeteria/fast food",
+        DINING_FAMILY: "Dining: family",
+        DORMITORY: "Dormitory",
+        EXERCISE_CTR: "Exercise center",
+        GYM: "Gymnasium",
+        HEALTH_CARE: "Health-care clinic",
+        HOSPITAL: "Hospital",
+        HOTEL: "Hotel",
+        LIBRARY: "Library",
+        MANUFACTURING: "Manufacturing Facility",
+        MOTEL: "Motel",
+        MOVIE_THTR: "Motion Picture Theater",
+        MULTIFAMILY: "Multifamily",
+        MUSEUM: "Museum",
+        OFFICE: "Office",
+        PARKING: "Parking Garage",
+        PENITENTIARY: "Penitentiary",
+        PERFORMING_ARTS: "Performing Arts Theater",
+        POLICE_FIRE: "Police/Fire Station",
+        POST_OFFICE: "Post Office",
+        RELIGIOUS: "Religious Building",
+        RETAIL: "Retail",
+        SCHOOL: "School/University",
+        SPORTS: "Sports Arena",
+        TOWN_HALL: "Town Hall",
+        TRANSPORTATION: "Transportation",
+        WAREHOUSE: "Warehouse",
+        WORKSHOP: "Workshop"
+    };
+
+    var ashraeLabels = Object.keys(ashraeTypes);
+    console.log("ASHRAE", ashraeLabels);
+
+    Polymer({
+        is: "wui-records",
+
+        ready: function(){
+
+        },
+
+        buildingSizes: ["CATEGORY1", "CATEGORY2", "CATEGORY3"],
+        buildingCategories: ashraeTypes,
+
+        getBuildingsByType: function(bldType) {
+            if (ashraeLabels.indexOf(bldType) === -1) {
+                console.log("Unrecognized building type: ", bldType);
+                return;
+            }
+
+            $.get('/api/buildingRecord', { buildingType: ashraeTypes[bldType] })
+                .then(function(data, status, headers, config) {
+                    console.log("SUCCESS", data);
+                    // resolve(data);
+                }).fail(function(data, status, headers, config) {
+                    console.error("Error", data);
+                    // reject("Error fetching block logs");
+                });
+        },
+
+        getBuildingsByState: function(state) {
+
+        },
+
+        getBuildingsBySize: function(sizeCategory) {
+
+        }
+
+    });
+
+})();
+
+
+</script>
+
+</dom-module>
