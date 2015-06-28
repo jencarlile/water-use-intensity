@@ -41,6 +41,7 @@ paper-button {
   background: #FFFFFF;
   color: #28577F;
   text-transform: none;
+  font-weight: bolder;
 }
 
 paper-button.colored {
